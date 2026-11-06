@@ -1,0 +1,7 @@
+SELECT ?item ?label ?coord ?pop WHERE {
+  ?item wdt:P31/wdt:P279* wd:Q515 .
+  ?item wdt:P17 wd:Q145 ; wdt:P625 ?coord .
+  FILTER NOT EXISTS { ?item wdt:P576 [] }
+  ?item rdfs:label ?label FILTER(LANG(?label)="en")
+  OPTIONAL { ?item wdt:P1082 ?pop }
+}
