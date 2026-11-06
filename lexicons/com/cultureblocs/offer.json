@@ -1,0 +1,133 @@
+{
+  "lexicon": 1,
+  "id": "com.cultureblocs.offer",
+  "defs": {
+    "main": {
+      "type": "record",
+      "description": "Something a creative or a place offers, or needs, for a while: a recording engineer available for hire, off-peak rehearsal rates, a studio desk free for three months, 'looking for a drummer'. Separate from the profile because offers come and go. Pause and reopen an offer by changing `status` on the same record rather than deleting and recreating it, so links and history survive. Public by nature: carry links, never private contact details.",
+      "key": "tid",
+      "record": {
+        "type": "object",
+        "required": [
+          "kind",
+          "title",
+          "status",
+          "createdAt"
+        ],
+        "properties": {
+          "kind": {
+            "type": "string",
+            "maxGraphemes": 16,
+            "knownValues": [
+              "offer",
+              "need"
+            ],
+            "description": "Offering something, or looking for something. Readers should not display a record whose kind they do not recognise."
+          },
+          "offeredBy": {
+            "type": "ref",
+            "ref": "com.cultureblocs.defs#strongRef",
+            "description": "The place.profile this offer belongs to. Omit when the offer is from the repository holder's own creative.profile."
+          },
+          "offerType": {
+            "type": "string",
+            "maxGraphemes": 64,
+            "knownValues": [
+              "service",
+              "space_to_let",
+              "hire",
+              "commission",
+              "collaboration",
+              "workshop",
+              "residency",
+              "volunteer"
+            ],
+            "description": "Advisory vocabulary: new types need no schema change."
+          },
+          "title": {
+            "type": "string",
+            "maxGraphemes": 200,
+            "description": "One line, e.g. 'Mixing and mastering', 'Shared studio desk, Deptford'."
+          },
+          "description": {
+            "type": "string",
+            "maxGraphemes": 2000
+          },
+          "disciplines": {
+            "type": "array",
+            "maxLength": 8,
+            "items": {
+              "type": "string",
+              "maxGraphemes": 64
+            },
+            "description": "Freeform, as in creative.profile."
+          },
+          "price": {
+            "type": "string",
+            "maxGraphemes": 200,
+            "description": "Freeform: 'from £20/hr', 'negotiable', 'free for members'."
+          },
+          "areas": {
+            "type": "array",
+            "maxLength": 8,
+            "items": {
+              "type": "ref",
+              "ref": "com.cultureblocs.defs#areaRef"
+            },
+            "description": "Where the offer applies. Defaults, for readers, to the offering party's basedIn or place area."
+          },
+          "remote": {
+            "type": "boolean",
+            "description": "Can be done remotely or online."
+          },
+          "status": {
+            "type": "string",
+            "maxGraphemes": 16,
+            "knownValues": [
+              "open",
+              "paused",
+              "closed"
+            ],
+            "description": "Readers treat any value other than 'open' as not currently available."
+          },
+          "validFrom": {
+            "type": "string",
+            "format": "datetime"
+          },
+          "validUntil": {
+            "type": "string",
+            "format": "datetime",
+            "description": "After this, readers treat the offer as closed whatever its status says, so stale offers drop out without anyone tidying up."
+          },
+          "links": {
+            "type": "array",
+            "maxLength": 8,
+            "items": {
+              "type": "ref",
+              "ref": "com.cultureblocs.defs#linkRef"
+            },
+            "description": "Booking page, portfolio, enquiry form."
+          },
+          "tags": {
+            "type": "array",
+            "maxLength": 8,
+            "items": {
+              "type": "string",
+              "maxGraphemes": 64
+            }
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "datetime",
+            "description": "When status or content last changed. Lets readers show 'reopened 2 days ago' and sort by freshness."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "datetime",
+            "description": "When this record was first stamped. The only immutable field: everything else may be revised by publishing a new commit."
+          }
+        }
+      }
+    }
+  }
+}

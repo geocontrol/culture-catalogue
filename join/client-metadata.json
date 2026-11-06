@@ -1,0 +1,22 @@
+{
+  "client_id": "https://culture-catalogue.vercel.app/join/client-metadata.json",
+  "client_name": "Culture Catalogue",
+  "client_uri": "https://culture-catalogue.vercel.app",
+  "logo_uri": "https://culture-catalogue.vercel.app/favicon.svg",
+  "policy_uri": "https://culture-catalogue.vercel.app/about.html",
+  "tos_uri": "https://culture-catalogue.vercel.app/about.html",
+  "redirect_uris": [
+    "https://culture-catalogue.vercel.app/join/"
+  ],
+  "scope": "atproto repo:com.cultureblocs.creative.profile?action=create&action=update repo:com.cultureblocs.place.profile?action=create&action=update repo:com.cultureblocs.offer?action=create&action=update blob:image/* transition:generic",
+  "grant_types": [
+    "authorization_code",
+    "refresh_token"
+  ],
+  "response_types": [
+    "code"
+  ],
+  "token_endpoint_auth_method": "none",
+  "application_type": "web",
+  "dpop_bound_access_tokens": true
+}

@@ -1,0 +1,652 @@
+{
+  "demo": true,
+  "about": "Invented entries for local development and tests. Not real people or places.",
+  "built": "2026-11-01T10:00:00.000Z",
+  "repos": 12,
+  "entries": [
+    {
+      "did": "did:plc:demo00000000000000000001",
+      "handle": "inesvarga.example",
+      "kind": "person",
+      "uri": "at://did:plc:demo00000000000000000001/com.cultureblocs.creative.profile/self",
+      "value": {
+        "$type": "com.cultureblocs.creative.profile",
+        "name": "Ines Varga",
+        "bio": "Painter working with pigment made from Somerset clays. Open studio weekends in spring.",
+        "disciplines": [
+          "painting",
+          "printmaking"
+        ],
+        "basedIn": [
+          {
+            "label": "Frome, Somerset",
+            "level": "town",
+            "country": "GB",
+            "wikidata": "Q1242441",
+            "within": [
+              {
+                "scheme": "gss",
+                "id": "E06000066"
+              },
+              {
+                "scheme": "gss",
+                "id": "E12000009"
+              },
+              {
+                "scheme": "gss",
+                "id": "E92000001"
+              }
+            ]
+          }
+        ],
+        "activeIn": [
+          {
+            "label": "London, England",
+            "level": "city",
+            "country": "GB",
+            "wikidata": "Q84",
+            "externalIds": [
+              {
+                "scheme": "gss",
+                "id": "E12000007"
+              }
+            ],
+            "within": [
+              {
+                "scheme": "gss",
+                "id": "E92000001"
+              }
+            ]
+          }
+        ],
+        "createdAt": "2026-11-01T10:00:00.000Z"
+      },
+      "offers": []
+    },
+    {
+      "did": "did:plc:demo00000000000000000002",
+      "handle": "tomachterberg.example",
+      "kind": "person",
+      "uri": "at://did:plc:demo00000000000000000002/com.cultureblocs.creative.profile/self",
+      "value": {
+        "$type": "com.cultureblocs.creative.profile",
+        "name": "Tom Achterberg",
+        "bio": "Sound artist and field recordist. Installations for galleries and festivals along the south coast.",
+        "disciplines": [
+          "sound",
+          "installation"
+        ],
+        "basedIn": [
+          {
+            "label": "Brighton, Brighton and Hove",
+            "level": "town",
+            "country": "GB",
+            "wikidata": "Q131491",
+            "within": [
+              {
+                "scheme": "gss",
+                "id": "E06000043"
+              },
+              {
+                "scheme": "gss",
+                "id": "E12000008"
+              },
+              {
+                "scheme": "gss",
+                "id": "E92000001"
+              }
+            ]
+          }
+        ],
+        "activeIn": [
+          {
+            "label": "London, England",
+            "level": "city",
+            "country": "GB",
+            "wikidata": "Q84",
+            "externalIds": [
+              {
+                "scheme": "gss",
+                "id": "E12000007"
+              }
+            ],
+            "within": [
+              {
+                "scheme": "gss",
+                "id": "E92000001"
+              }
+            ]
+          }
+        ],
+        "createdAt": "2026-11-01T10:00:00.000Z"
+      },
+      "offers": [
+        {
+          "uri": "at://did:plc:demo00000000000000000002/com.cultureblocs.offer/o0",
+          "value": {
+            "$type": "com.cultureblocs.offer",
+            "kind": "offer",
+            "status": "open",
+            "createdAt": "2026-11-01T10:00:00.000Z",
+            "offerType": "service",
+            "title": "Field recording and sound design",
+            "price": "from £250/day",
+            "remote": true
+          }
+        }
+      ]
+    },
+    {
+      "did": "did:plc:demo00000000000000000003",
+      "handle": "rosamendel.example",
+      "kind": "person",
+      "uri": "at://did:plc:demo00000000000000000003/com.cultureblocs.creative.profile/self",
+      "value": {
+        "$type": "com.cultureblocs.creative.profile",
+        "name": "Rosa Mendel",
+        "bio": "Recording and mix engineer. Twenty years of folk, jazz and spoken word.",
+        "disciplines": [
+          "recording engineer",
+          "mixing"
+        ],
+        "basedIn": [
+          {
+            "label": "Lewisham, London",
+            "level": "local_authority",
+            "country": "GB",
+            "wikidata": "Q215030",
+            "externalIds": [
+              {
+                "scheme": "gss",
+                "id": "E09000023"
+              }
+            ],
+            "within": [
+              {
+                "scheme": "gss",
+                "id": "E12000007"
+              },
+              {
+                "scheme": "gss",
+                "id": "E92000001"
+              }
+            ]
+          }
+        ],
+        "activeIn": [],
+        "createdAt": "2026-11-01T10:00:00.000Z"
+      },
+      "offers": [
+        {
+          "uri": "at://did:plc:demo00000000000000000003/com.cultureblocs.offer/o0",
+          "value": {
+            "$type": "com.cultureblocs.offer",
+            "kind": "offer",
+            "status": "open",
+            "createdAt": "2026-11-01T10:00:00.000Z",
+            "offerType": "hire",
+            "title": "Mixing and mastering",
+            "price": "from £40/hr"
+          }
+        }
+      ]
+    },
+    {
+      "did": "did:plc:demo00000000000000000004",
+      "handle": "kwameasante.example",
+      "kind": "person",
+      "uri": "at://did:plc:demo00000000000000000004/com.cultureblocs.creative.profile/self",
+      "value": {
+        "$type": "com.cultureblocs.creative.profile",
+        "name": "Kwame Asante",
+        "bio": "Ceramicist. Wheel-thrown tableware and large hand-built forms.",
+        "disciplines": [
+          "ceramics"
+        ],
+        "basedIn": [
+          {
+            "label": "Newham, London",
+            "level": "local_authority",
+            "country": "GB",
+            "wikidata": "Q208139",
+            "externalIds": [
+              {
+                "scheme": "gss",
+                "id": "E09000025"
+              }
+            ],
+            "within": [
+              {
+                "scheme": "gss",
+                "id": "E12000007"
+              },
+              {
+                "scheme": "gss",
+                "id": "E92000001"
+              }
+            ]
+          }
+        ],
+        "activeIn": [],
+        "createdAt": "2026-11-01T10:00:00.000Z"
+      },
+      "offers": []
+    },
+    {
+      "did": "did:plc:demo00000000000000000005",
+      "handle": "hollisbyrne.example",
+      "kind": "person",
+      "uri": "at://did:plc:demo00000000000000000005/com.cultureblocs.creative.profile/self",
+      "value": {
+        "$type": "com.cultureblocs.creative.profile",
+        "name": "Hollis Byrne",
+        "bio": "Theatre lighting designer and occasional set builder.",
+        "disciplines": [
+          "lighting design",
+          "set design"
+        ],
+        "basedIn": [
+          {
+            "label": "Peckham, Southwark",
+            "level": "neighbourhood",
+            "country": "GB",
+            "wikidata": "Q2690524",
+            "within": [
+              {
+                "scheme": "gss",
+                "id": "E09000028"
+              },
+              {
+                "scheme": "gss",
+                "id": "E12000007"
+              },
+              {
+                "scheme": "gss",
+                "id": "E92000001"
+              }
+            ]
+          }
+        ],
+        "activeIn": [],
+        "createdAt": "2026-11-01T10:00:00.000Z"
+      },
+      "offers": []
+    },
+    {
+      "did": "did:plc:demo00000000000000000006",
+      "handle": "mirasolberg.example",
+      "kind": "person",
+      "uri": "at://did:plc:demo00000000000000000006/com.cultureblocs.creative.profile/self",
+      "value": {
+        "$type": "com.cultureblocs.creative.profile",
+        "name": "Mira Solberg",
+        "bio": "Illustrator and zine maker.",
+        "disciplines": [
+          "illustration",
+          "printmaking"
+        ],
+        "basedIn": [
+          {
+            "label": "Deptford, Lewisham",
+            "level": "neighbourhood",
+            "country": "GB",
+            "wikidata": "Q2308650",
+            "within": [
+              {
+                "scheme": "gss",
+                "id": "E09000023"
+              },
+              {
+                "scheme": "gss",
+                "id": "E12000007"
+              },
+              {
+                "scheme": "gss",
+                "id": "E92000001"
+              }
+            ]
+          }
+        ],
+        "activeIn": [],
+        "createdAt": "2026-11-01T10:00:00.000Z"
+      },
+      "offers": []
+    },
+    {
+      "did": "did:plc:demo00000000000000000007",
+      "handle": "archnine.example",
+      "kind": "place",
+      "uri": "at://did:plc:demo00000000000000000007/com.cultureblocs.place.profile/self",
+      "coords": {
+        "lat": 51.4698,
+        "lng": -0.068
+      },
+      "value": {
+        "$type": "com.cultureblocs.place.profile",
+        "name": "Arch Nine Rehearsal Rooms",
+        "description": "Six soundproofed rooms under the railway, backline included. Open late.",
+        "spaceTypes": [
+          "rehearsal_room",
+          "recording_studio"
+        ],
+        "publicAccess": "bookable",
+        "location": {
+          "$type": "community.lexicon.location.address",
+          "street": "Arch 9, Station Approach",
+          "locality": "London",
+          "postalCode": "SE15 4ST",
+          "country": "GB"
+        },
+        "area": {
+          "label": "Peckham, Southwark",
+          "level": "neighbourhood",
+          "country": "GB",
+          "wikidata": "Q2690524",
+          "within": [
+            {
+              "scheme": "gss",
+              "id": "E09000028"
+            },
+            {
+              "scheme": "gss",
+              "id": "E12000007"
+            },
+            {
+              "scheme": "gss",
+              "id": "E92000001"
+            }
+          ]
+        },
+        "hours": "Every day 10:00–midnight",
+        "capacity": 12,
+        "createdAt": "2026-11-01T10:00:00.000Z"
+      },
+      "offers": [
+        {
+          "uri": "at://did:plc:demo00000000000000000007/com.cultureblocs.offer/p0",
+          "value": {
+            "$type": "com.cultureblocs.offer",
+            "kind": "offer",
+            "status": "open",
+            "offeredBy": {
+              "uri": "at://did:plc:demo00000000000000000007/com.cultureblocs.place.profile/self"
+            },
+            "createdAt": "2026-11-01T10:00:00.000Z",
+            "offerType": "space_to_let",
+            "title": "Off-peak room hire, weekdays before 5pm",
+            "price": "£12/hr"
+          }
+        }
+      ]
+    },
+    {
+      "did": "did:plc:demo00000000000000000008",
+      "handle": "threadandbobbin.example",
+      "kind": "place",
+      "uri": "at://did:plc:demo00000000000000000008/com.cultureblocs.place.profile/self",
+      "coords": {
+        "lat": 51.4705,
+        "lng": -0.069
+      },
+      "value": {
+        "$type": "com.cultureblocs.place.profile",
+        "name": "Thread & Bobbin",
+        "description": "Fabric, thread and haberdashery for costume makers and designers.",
+        "spaceTypes": [
+          "supplier",
+          "shop"
+        ],
+        "publicAccess": "walk_in",
+        "location": {
+          "$type": "community.lexicon.location.address",
+          "street": "22 Rye Lane",
+          "locality": "London",
+          "postalCode": "SE15 5BS",
+          "country": "GB"
+        },
+        "area": {
+          "label": "Peckham, Southwark",
+          "level": "neighbourhood",
+          "country": "GB",
+          "wikidata": "Q2690524",
+          "within": [
+            {
+              "scheme": "gss",
+              "id": "E09000028"
+            },
+            {
+              "scheme": "gss",
+              "id": "E12000007"
+            },
+            {
+              "scheme": "gss",
+              "id": "E92000001"
+            }
+          ]
+        },
+        "hours": "Tue–Sat 10:00–18:00",
+        "createdAt": "2026-11-01T10:00:00.000Z"
+      },
+      "offers": []
+    },
+    {
+      "did": "did:plc:demo00000000000000000009",
+      "handle": "thelodge.example",
+      "kind": "place",
+      "uri": "at://did:plc:demo00000000000000000009/com.cultureblocs.place.profile/self",
+      "coords": {
+        "lat": 51.4795,
+        "lng": -0.0235
+      },
+      "value": {
+        "$type": "com.cultureblocs.place.profile",
+        "name": "The Lodge Gallery",
+        "description": "Artist-run gallery and six studios in a converted print works.",
+        "spaceTypes": [
+          "gallery",
+          "artist_studio"
+        ],
+        "publicAccess": "walk_in",
+        "location": {
+          "$type": "community.lexicon.location.address",
+          "street": "4 Creekside",
+          "locality": "London",
+          "postalCode": "SE8 4SA",
+          "country": "GB"
+        },
+        "area": {
+          "label": "Deptford, Lewisham",
+          "level": "neighbourhood",
+          "country": "GB",
+          "wikidata": "Q2308650",
+          "within": [
+            {
+              "scheme": "gss",
+              "id": "E09000023"
+            },
+            {
+              "scheme": "gss",
+              "id": "E12000007"
+            },
+            {
+              "scheme": "gss",
+              "id": "E92000001"
+            }
+          ]
+        },
+        "hours": "Thu–Sun 12:00–18:00",
+        "accessibility": "Step-free ground floor; accessible toilet.",
+        "createdAt": "2026-11-01T10:00:00.000Z"
+      },
+      "offers": [
+        {
+          "uri": "at://did:plc:demo00000000000000000009/com.cultureblocs.offer/p0",
+          "value": {
+            "$type": "com.cultureblocs.offer",
+            "kind": "offer",
+            "status": "open",
+            "offeredBy": {
+              "uri": "at://did:plc:demo00000000000000000009/com.cultureblocs.place.profile/self"
+            },
+            "createdAt": "2026-11-01T10:00:00.000Z",
+            "offerType": "space_to_let",
+            "title": "Studio space, from January",
+            "price": "£180/month",
+            "validUntil": "2027-01-31T00:00:00.000Z"
+          }
+        }
+      ]
+    },
+    {
+      "did": "did:plc:demo00000000000000000010",
+      "handle": "stratfordsound.example",
+      "kind": "place",
+      "uri": "at://did:plc:demo00000000000000000010/com.cultureblocs.place.profile/self",
+      "coords": {
+        "lat": 51.539,
+        "lng": -0.002
+      },
+      "value": {
+        "$type": "com.cultureblocs.place.profile",
+        "name": "Stratford Sound Works",
+        "description": "Two-room recording studio with a live room big enough for a ten-piece.",
+        "spaceTypes": [
+          "recording_studio"
+        ],
+        "publicAccess": "bookable",
+        "location": {
+          "$type": "community.lexicon.location.address",
+          "street": "18 Gibbins Road",
+          "locality": "London",
+          "postalCode": "E15 2HU",
+          "country": "GB"
+        },
+        "area": {
+          "label": "Newham, London",
+          "level": "local_authority",
+          "country": "GB",
+          "wikidata": "Q208139",
+          "externalIds": [
+            {
+              "scheme": "gss",
+              "id": "E09000025"
+            }
+          ],
+          "within": [
+            {
+              "scheme": "gss",
+              "id": "E12000007"
+            },
+            {
+              "scheme": "gss",
+              "id": "E92000001"
+            }
+          ]
+        },
+        "capacity": 10,
+        "createdAt": "2026-11-01T10:00:00.000Z"
+      },
+      "offers": []
+    },
+    {
+      "did": "did:plc:demo00000000000000000011",
+      "handle": "cheapstreet.example",
+      "kind": "place",
+      "uri": "at://did:plc:demo00000000000000000011/com.cultureblocs.place.profile/self",
+      "coords": {
+        "lat": 51.2289,
+        "lng": -2.322
+      },
+      "value": {
+        "$type": "com.cultureblocs.place.profile",
+        "name": "Cheap Street Makers",
+        "description": "Community makerspace with a woodshop, laser cutter and ceramics kiln.",
+        "spaceTypes": [
+          "makerspace",
+          "workshop"
+        ],
+        "publicAccess": "by_appointment",
+        "location": {
+          "$type": "community.lexicon.location.address",
+          "street": "5 Cheap Street",
+          "locality": "Frome",
+          "postalCode": "BA11 1BN",
+          "country": "GB"
+        },
+        "area": {
+          "label": "Frome, Somerset",
+          "level": "town",
+          "country": "GB",
+          "wikidata": "Q1242441",
+          "within": [
+            {
+              "scheme": "gss",
+              "id": "E06000066"
+            },
+            {
+              "scheme": "gss",
+              "id": "E12000009"
+            },
+            {
+              "scheme": "gss",
+              "id": "E92000001"
+            }
+          ]
+        },
+        "createdAt": "2026-11-01T10:00:00.000Z"
+      },
+      "offers": []
+    },
+    {
+      "did": "did:plc:demo00000000000000000012",
+      "handle": "northlaine.example",
+      "kind": "place",
+      "uri": "at://did:plc:demo00000000000000000012/com.cultureblocs.place.profile/self",
+      "coords": {
+        "lat": 50.8285,
+        "lng": -0.1385
+      },
+      "value": {
+        "$type": "com.cultureblocs.place.profile",
+        "name": "North Laine Hall",
+        "description": "Small venue for gigs, readings and film nights.",
+        "spaceTypes": [
+          "venue",
+          "cinema"
+        ],
+        "publicAccess": "bookable",
+        "location": {
+          "$type": "community.lexicon.location.address",
+          "street": "41 Gloucester Road",
+          "locality": "Brighton",
+          "postalCode": "BN1 4AQ",
+          "country": "GB"
+        },
+        "area": {
+          "label": "Brighton, Brighton and Hove",
+          "level": "town",
+          "country": "GB",
+          "wikidata": "Q131491",
+          "within": [
+            {
+              "scheme": "gss",
+              "id": "E06000043"
+            },
+            {
+              "scheme": "gss",
+              "id": "E12000008"
+            },
+            {
+              "scheme": "gss",
+              "id": "E92000001"
+            }
+          ]
+        },
+        "capacity": 120,
+        "createdAt": "2026-11-01T10:00:00.000Z"
+      },
+      "offers": []
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,10 @@
+{
+  "name": "culture-catalogue",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "index": "node scripts/build-index.mjs",
+    "test": "node --test 'test/*.test.mjs' 'gazetteer/test/*.test.mjs'"
+  }
+}

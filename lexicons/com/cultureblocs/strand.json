@@ -1,0 +1,65 @@
+{
+  "lexicon": 1,
+  "id": "com.cultureblocs.strand",
+  "defs": {
+    "main": {
+      "type": "record",
+      "description": "A curated, ordered string of beads and annotations \u2014 typically one day's cultural path. The publishable story unit.",
+      "key": "tid",
+      "record": {
+        "type": "object",
+        "required": [
+          "createdAt",
+          "items"
+        ],
+        "properties": {
+          "createdAt": {
+            "type": "string",
+            "format": "datetime"
+          },
+          "title": {
+            "type": "string",
+            "maxGraphemes": 300
+          },
+          "narrative": {
+            "type": "string",
+            "maxGraphemes": 10000
+          },
+          "refs": {
+            "type": "array",
+            "maxLength": 50,
+            "items": { "type": "ref", "ref": "com.cultureblocs.defs#ref" },
+            "description": "What this record is about (role subject) and what it reaches for (role mention). Anchors index into `narrative`."
+          },
+          "items": {
+            "type": "array",
+            "maxLength": 200,
+            "items": {
+              "type": "ref",
+              "ref": "com.cultureblocs.defs#strongRef"
+            },
+            "description": "Ordered refs to bead and annotation records."
+          },
+          "day": {
+            "type": "string",
+            "format": "datetime",
+            "description": "The day this strand covers (date portion significant)."
+          },
+          "links": {
+            "type": "array",
+            "maxLength": 8,
+            "items": {
+              "type": "ref",
+              "ref": "com.cultureblocs.defs#linkRef"
+            }
+          },
+          "place": {
+            "type": "ref",
+            "ref": "com.cultureblocs.defs#placeRef",
+            "description": "Where this strand happened (e.g. Tate Modern)."
+          }
+        }
+      }
+    }
+  }
+}

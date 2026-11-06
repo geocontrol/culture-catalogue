@@ -1,0 +1,110 @@
+{
+  "lexicon": 1,
+  "id": "com.cultureblocs.bead",
+  "defs": {
+    "main": {
+      "type": "record",
+      "description": "An atomic cultural memory: a visit, a dwell, an encounter, a screening. Minted on-device or by hand; annotated later.",
+      "key": "tid",
+      "record": {
+        "type": "object",
+        "required": [
+          "createdAt",
+          "kind"
+        ],
+        "properties": {
+          "createdAt": {
+            "type": "string",
+            "format": "datetime"
+          },
+          "kind": {
+            "type": "string",
+            "knownValues": [
+              "bloc",
+              "visit",
+              "dwell",
+              "encounter",
+              "read",
+              "listen",
+              "watch",
+              "screening",
+              "performance",
+              "note"
+            ],
+            "description": "What kind of cultural moment: bloc is the neutral default (a marked moment); read/listen/watch cover at-home culture; visit/dwell/screening/performance cover being out; encounter is a mutual mint."
+          },
+          "subject": {
+            "type": "union",
+            "refs": [
+              "com.cultureblocs.defs#placeRef",
+              "com.cultureblocs.defs#strongRef"
+            ],
+            "description": "Where the bead happened, or the published record (event, exhibition) it belongs to. Works, people and concepts go in `refs`."
+          },
+          "note": {
+            "type": "string",
+            "maxGraphemes": 3000
+          },
+          "refs": {
+            "type": "array",
+            "maxLength": 50,
+            "items": { "type": "ref", "ref": "com.cultureblocs.defs#ref" },
+            "description": "What this record is about (role subject) and what it reaches for (role mention). Anchors index into `note`."
+          },
+          "presentation": {
+            "type": "ref",
+            "ref": "com.cultureblocs.defs#presentation"
+          },
+          "tags": {
+            "type": "array",
+            "maxLength": 8,
+            "items": {
+              "type": "string",
+              "maxGraphemes": 64
+            },
+            "description": "Freeform tags: the CultureBloc mask worn at mint time, ad-hoc event tags (emfcamp26), etc."
+          },
+          "geo": {
+            "type": "ref",
+            "ref": "com.cultureblocs.defs#geo"
+          },
+          "media": {
+            "type": "array",
+            "maxLength": 10,
+            "items": {
+              "type": "ref",
+              "ref": "com.cultureblocs.defs#mediaRef"
+            }
+          },
+          "prev": {
+            "type": "ref",
+            "ref": "com.cultureblocs.defs#strongRef",
+            "description": "Previous bead in the day's chain, if any."
+          },
+          "provenance": {
+            "type": "ref",
+            "ref": "com.cultureblocs.defs#provenance"
+          },
+          "links": {
+            "type": "array",
+            "maxLength": 8,
+            "items": {
+              "type": "ref",
+              "ref": "com.cultureblocs.defs#linkRef"
+            },
+            "description": "Event page, venue page, etc."
+          },
+          "images": {
+            "type": "array",
+            "maxLength": 10,
+            "items": {
+              "type": "ref",
+              "ref": "com.cultureblocs.defs#imageRef"
+            },
+            "description": "Published images as imageRefs. Tier 0 records use `media` (local refs); the promoter uploads the bytes and maps alt + aspectRatio across at publish time."
+          }
+        }
+      }
+    }
+  }
+}

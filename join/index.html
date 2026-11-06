@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Add yourself · Culture Catalogue</title>
+<meta name="description" content="Add yourself or your place to Culture Catalogue. Your entry lives in your own account; you can change or remove it at any time.">
+<meta name="oauth-store" content="catalogue">
+<link rel="atproto-client" href="https://culture-catalogue.vercel.app/join/client-metadata.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/join/join.css">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<header class="masthead">
+  <a class="drawer-label" href="/" aria-label="Culture Catalogue home">
+    <span class="drawer-label__plate">Culture Catalogue</span>
+  </a>
+  <div class="who" id="who-bar" hidden>
+    <span id="who-handle"></span>
+    <button type="button" class="btn btn--quiet" id="sign-out">Sign out</button>
+  </div>
+</header>
+
+<main class="join">
+  <h1>Add yourself to the catalogue</h1>
+  <p class="join__intro">Your entry is published from your own ATProto account (Bluesky, Eurosky and others use the same kind of account). It’s public, it stays yours, and you can change or remove it at any time. Culture Catalogue only reads it.</p>
+
+  <ol class="steps" id="steps" aria-label="Progress">
+    <li data-step="account">Account</li>
+    <li data-step="entry">Your entry</li>
+    <li data-step="offers">Offers <span class="steps__opt">(optional)</span></li>
+  </ol>
+
+  <p id="status" class="status" role="status" hidden></p>
+
+  <!-- 1. account -->
+  <section id="s-signin" class="panel-pair" hidden>
+    <form class="panel" id="signin-form" novalidate>
+      <h2>I have an account</h2>
+      <p class="hint">Sign in with the handle you use on Bluesky, Eurosky, Blacksky or your own server.</p>
+      <div class="field">
+        <label for="handle">Your handle</label>
+        <input id="handle" name="handle" autocomplete="username" autocapitalize="off" spellcheck="false" placeholder="name.bsky.social">
+        <p class="err" id="e-handle" hidden></p>
+      </div>
+      <button class="btn" type="submit">Sign in</button>
+    </form>
+
+    <form class="panel" id="signup-form" novalidate>
+      <h2>I’m new</h2>
+      <p class="hint">Choose where your account will live. You’ll pick a handle and password on that host’s own page, then come straight back here.</p>
+      <fieldset class="hosts">
+        <legend class="visually-hidden">Account host</legend>
+        <label class="host"><input type="radio" name="host" value="https://bsky.social" checked>
+          <span><strong>Bluesky</strong> The largest network, run by Bluesky Social PBC.</span></label>
+        <label class="host"><input type="radio" name="host" value="https://eurosky.social">
+          <span><strong>Eurosky</strong> Hosted in Europe, under European law.</span></label>
+        <label class="host"><input type="radio" name="host" value="other">
+          <span><strong>Another host</strong> <input id="other-host" type="text" placeholder="pds.example.org" aria-label="Other host address" autocapitalize="off" spellcheck="false"></span></label>
+      </fieldset>
+      <p class="err" id="e-host" hidden></p>
+      <button class="btn" type="submit">Create an account</button>
+    </form>
+  </section>
+
+  <!-- 2. choose -->
+  <section id="s-choose" hidden>
+    <h2>What are you adding?</h2>
+    <div class="choices">
+      <button type="button" class="choice" id="choose-person">
+        <span class="choice__title" id="choose-person-title">Myself, as a creative</span>
+        <span class="choice__text" id="choose-person-text">Who you are and what you do, and the area you’re based in. Never your address.</span>
+      </button>
+      <button type="button" class="choice" id="choose-place">
+        <span class="choice__title">A place</span>
+        <span class="choice__text">A venue, studio, rehearsal room, gallery, workshop, supplier or shop that people can visit or book.</span>
+      </button>
+    </div>
+    <div id="mine" class="mine" hidden></div>
+  </section>
+
+  <!-- 2a. person -->
+  <section id="s-person" hidden>
+    <h2 id="person-title">You, as a creative</h2>
+    <form class="form" id="person-form" novalidate>
+      <div class="field"><label for="p-name">Name you work under</label><input id="p-name" maxlength="300"><p class="err" id="pe-name" hidden></p></div>
+      <div class="field"><label for="p-bio">About</label><textarea id="p-bio" maxlength="2000"></textarea><p class="hint">What you make or do, in a few sentences.</p><p class="err" id="pe-bio" hidden></p></div>
+      <div class="field"><label for="p-disciplines">Disciplines</label><input id="p-disciplines" placeholder="ceramics, sound design"><p class="hint">Separate them with commas. Up to 8.</p><p class="err" id="pe-disciplines" hidden></p></div>
+      <div class="field"><label for="p-basedIn-input">Where you’re based</label><div data-areas="basedIn" data-max="3"></div><p class="hint">A town, neighbourhood or borough. This is all anyone sees of where you are.</p><p class="err" id="pe-basedIn" hidden></p></div>
+      <div class="field"><label for="p-activeIn-input">Also active in <span class="hint-inline">(optional)</span></label><div data-areas="activeIn" data-max="8"></div><p class="hint">Places you regularly show, play or take work.</p><p class="err" id="pe-activeIn" hidden></p></div>
+      <div class="field"><label for="p-website">Website <span class="hint-inline">(optional)</span></label><input id="p-website" inputmode="url" placeholder="yourname.co.uk"><p class="err" id="pe-website" hidden></p></div>
+      <div class="actions"><button class="btn" type="submit" id="person-submit">Publish</button><button class="btn btn--quiet" type="button" data-back>Back</button></div>
+    </form>
+  </section>
+
+  <!-- 2b. the public-space question -->
+  <section id="s-gate" hidden>
+    <h2>Can the public visit or book it?</h2>
+    <p>Places in the catalogue show their address. That’s right for a venue, a shop or a bookable studio. It isn’t right for a room in someone’s home.</p>
+    <div class="choices">
+      <button type="button" class="choice" id="gate-yes"><span class="choice__title">Yes, it’s open or bookable</span><span class="choice__text">Walk-in, by appointment or bookable. Or a business with no premises, which won’t show an address.</span></button>
+      <button type="button" class="choice" id="gate-no"><span class="choice__title">No, I work from home</span><span class="choice__text">Add yourself as a creative instead, with the area you’re based in. You can then add an offer, like “recording studio for hire”.</span></button>
+    </div>
+    <div class="actions"><button class="btn btn--quiet" type="button" data-back>Back</button></div>
+  </section>
+
+  <!-- 2c. place -->
+  <section id="s-place" hidden>
+    <h2 id="place-title">Your place</h2>
+    <form class="form" id="place-form" novalidate>
+      <div class="field"><label for="l-name">Name</label><input id="l-name" maxlength="300"><p class="err" id="le-name" hidden></p></div>
+      <fieldset><legend>What kind of place is it?</legend><div class="ticks" id="l-types"></div>
+        <div class="field"><label for="l-otherTypes">Something else</label><input id="l-otherTypes" placeholder="kiln hire, print studio"></div><p class="err" id="le-spaceTypes" hidden></p></fieldset>
+      <div class="field"><label for="l-description">Description</label><textarea id="l-description" maxlength="2000"></textarea><p class="err" id="le-description" hidden></p></div>
+      <fieldset><legend>How can people visit or book?</legend><div class="ticks" id="l-access"></div><p class="err" id="le-access" hidden></p></fieldset>
+      <div id="l-address">
+        <div class="field"><label for="l-street">Street address</label><input id="l-street" autocomplete="street-address"><p class="err" id="le-street" hidden></p></div>
+        <div class="row2">
+          <div class="field"><label for="l-locality">Town or city</label><input id="l-locality" autocomplete="address-level2"><p class="err" id="le-locality" hidden></p></div>
+          <div class="field"><label for="l-postcode">Postcode</label><input id="l-postcode" autocomplete="postal-code" autocapitalize="characters"><p class="hint" id="l-area-found" aria-live="polite"></p><p class="err" id="le-postcode" hidden></p></div>
+        </div>
+      </div>
+      <div class="field"><label for="l-serviceArea-input">Areas you serve <span class="hint-inline" id="l-serviceArea-opt">(optional)</span></label><div data-areas="serviceArea" data-max="8"></div><p class="hint">Delivery, mobile services, or “United Kingdom”.</p><p class="err" id="le-serviceArea" hidden></p></div>
+      <div class="row2">
+        <div class="field"><label for="l-hours">Opening or booking hours <span class="hint-inline">(optional)</span></label><input id="l-hours" placeholder="Tue–Sat 10–6"><p class="err" id="le-hours" hidden></p></div>
+        <div class="field"><label for="l-capacity">Capacity <span class="hint-inline">(optional)</span></label><input id="l-capacity" inputmode="numeric" placeholder="120"><p class="err" id="le-capacity" hidden></p></div>
+      </div>
+      <div class="field"><label for="l-accessibility">Access notes <span class="hint-inline">(optional)</span></label><input id="l-accessibility" placeholder="Step-free entry, accessible toilet, hearing loop"><p class="err" id="le-accessibility" hidden></p></div>
+      <div class="field"><label for="l-website">Website <span class="hint-inline">(optional)</span></label><input id="l-website" inputmode="url"><p class="err" id="le-website" hidden></p></div>
+      <div class="field"><label for="l-tags">Tags <span class="hint-inline">(optional)</span></label><input id="l-tags" placeholder="backline included, late opening"><p class="err" id="le-tags" hidden></p></div>
+      <div class="field"><label for="l-image">Photo <span class="hint-inline">(optional, up to 2 MB)</span></label><input id="l-image" type="file" accept="image/jpeg,image/png,image/webp"><p class="hint" id="l-image-current"></p>
+        <label for="l-alt">Describe the photo for people who can’t see it</label><input id="l-alt" maxlength="2000"><p class="err" id="le-image" hidden></p></div>
+      <div class="actions"><button class="btn" type="submit" id="place-submit">Publish</button><button class="btn btn--quiet" type="button" data-back>Back</button></div>
+    </form>
+  </section>
+
+  <!-- 3. offers -->
+  <section id="s-offers" hidden>
+    <h2>Offers</h2>
+    <p>Something you offer, or need, for a while: a room for hire, a studio desk, mixing work, “looking for a drummer”. Pause an offer when you’re busy and reopen it later; it keeps its place.</p>
+    <div id="offer-list" class="offer-list"></div>
+    <button type="button" class="btn" id="offer-new">Add an offer</button>
+    <form class="form" id="offer-form" novalidate hidden>
+      <h3 id="offer-form-title">New offer</h3>
+      <fieldset><legend>This is</legend><div class="ticks">
+        <label><input type="radio" name="o-kind" value="offer" checked><span>Something I offer</span></label>
+        <label><input type="radio" name="o-kind" value="need"><span>Something I’m looking for</span></label></div></fieldset>
+      <div class="field" id="o-from-field"><label for="o-from">From</label><select id="o-from"></select></div>
+      <div class="field"><label for="o-title">In one line</label><input id="o-title" maxlength="200" placeholder="Mixing and mastering"><p class="err" id="oe-title" hidden></p></div>
+      <div class="field"><label for="o-type">Kind of offer</label><select id="o-type"></select></div>
+      <div class="field"><label for="o-description">Details <span class="hint-inline">(optional)</span></label><textarea id="o-description" maxlength="2000"></textarea><p class="err" id="oe-description" hidden></p></div>
+      <div class="row2">
+        <div class="field"><label for="o-price">Price <span class="hint-inline">(optional)</span></label><input id="o-price" placeholder="from £40/hr, negotiable"><p class="err" id="oe-price" hidden></p></div>
+        <div class="field"><label for="o-until">Open until <span class="hint-inline">(optional)</span></label><input id="o-until" type="date"><p class="err" id="oe-until" hidden></p></div>
+      </div>
+      <div class="field"><label for="o-areas-input">Where <span class="hint-inline">(optional, defaults to where you’re based)</span></label><div data-areas="areas" data-max="8"></div><p class="err" id="oe-areas" hidden></p></div>
+      <label class="check"><input type="checkbox" id="o-remote"> Can be done remotely</label>
+      <div class="field"><label for="o-link">Booking or enquiry link <span class="hint-inline">(optional)</span></label><input id="o-link" inputmode="url"><p class="hint">A link, not an email address or phone number: offers are public.</p><p class="err" id="oe-link" hidden></p></div>
+      <div class="actions"><button class="btn" type="submit" id="offer-submit">Publish offer</button><button class="btn btn--quiet" type="button" id="offer-cancel">Cancel</button></div>
+    </form>
+    <div class="actions"><a class="btn btn--quiet" id="offers-done" href="/">See the catalogue</a></div>
+  </section>
+
+  <!-- done -->
+  <section id="s-done" hidden>
+    <h2 id="done-title">Published</h2>
+    <p id="done-text"></p>
+    <div class="actions">
+      <a class="btn" id="done-view" href="/">See your entry</a>
+      <button type="button" class="btn btn--quiet" id="done-offers">Add an offer</button>
+      <button type="button" class="btn btn--quiet" id="done-more">Add something else</button>
+    </div>
+  </section>
+</main>
+
+<footer class="colophon">
+  <p>Entries are <a href="https://www.cultureblocs.com/lexicons.html">CultureBlocs records</a>: open data that any app can read. Culture Catalogue writes only the records you publish here, and only to your own account.</p>
+</footer>
+<script type="module" src="/join/join.js"></script>
+</body>
+</html>

@@ -56,7 +56,7 @@ ONS = "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services"
 ONS_SOURCES = {
     "lad_boundaries.geojson": (
         "Local_Authority_Districts_DEC_2025_Boundaries_UK_BGC",
-        {"outFields": "LAD25CD,LAD25NM", "outSR": "4326", "f": "geojson"}),
+        {"outFields": "LAD25CD,LAD25NM,LONG,LAT", "outSR": "4326", "f": "geojson"}),
     "lad_region.json": ("LAD25_RGN25_EN_LU_v2", {"outFields": "*", "f": "json"}),
     "lad_country.json": ("LAD25_CTRY25_UK_LU", {"outFields": "*", "f": "json"}),
     "lad_county.json": ("WD25_LAD25_CTY25_CED25_EN_LU",
@@ -160,9 +160,11 @@ def build() -> None:
     # Local authorities and what they sit inside.
     lads = {}
     geoms, geom_codes = [], []
+    # outFields=* on the boundary query brings LONG/LAT, the ONS centroid
     for f in json.loads((RAW / "lad_boundaries.geojson").read_text())["features"]:
         p = f["properties"]
-        lads[p["LAD25CD"]] = {"name": display_name(p["LAD25NM"])}
+        lads[p["LAD25CD"]] = {"name": display_name(p["LAD25NM"]),
+                              "pt": (p.get("LONG"), p.get("LAT"))}
         geoms.append(shape(f["geometry"]))
         geom_codes.append(p["LAD25CD"])
     tree = STRtree(geoms)
@@ -208,7 +210,20 @@ def build() -> None:
 
     entries: list[dict] = []
 
-    # Admin areas: countries, regions, counties, local authorities.
+    # Admin areas: countries, regions, counties, local authorities. Each
+    # gets a centre for the map: the ONS centroid for a council area, the
+    # mean of its councils' centroids for anything bigger.
+    def centre(codes):
+        pts = [lads[c]["pt"] for c in codes if all(v is not None for v in lads[c]["pt"])]
+        if not pts:
+            return {}
+        return {"lng": round(sum(x for x, _ in pts) / len(pts), 3),
+                "lat": round(sum(y for _, y in pts) / len(pts), 3)}
+    members: dict[str, list[str]] = {}
+    for code, lad in lads.items():
+        for k in ("ctry", "rgn", "cty"):
+            if k in lad:
+                members.setdefault(lad[k][0], []).append(code)
     seen_admin = set()
     for code, lad in lads.items():
         for k, level in (("ctry", "country"), ("rgn", "region"), ("cty", "county")):
@@ -222,11 +237,11 @@ def build() -> None:
                     parents = [lad["ctry"][0]]
                 entries.append({"q": qid_for(c, n), "n": n, "k": level,
                                 "ctx": "" if level == "country" else lad["ctry"][1],
-                                "gss": c, "in": parents})
+                                "gss": c, "in": parents, **centre(members.get(c, []))})
         entries.append({"q": qid_for(code, lad["name"]), "n": lad["name"],
                         "k": "local_authority",
                         "ctx": lad.get("cty", lad.get("rgn", lad["ctry"]))[1],
-                        "gss": code, "in": within(code)[1:]})
+                        "gss": code, "in": within(code)[1:], **centre([code])})
     admin_qids = {e["q"] for e in entries if e["q"]}
 
     # Places from Wikidata. A QID can appear under several kinds (a city

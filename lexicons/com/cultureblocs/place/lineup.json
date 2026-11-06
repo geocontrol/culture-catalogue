@@ -1,0 +1,64 @@
+{
+  "lexicon": 1,
+  "id": "com.cultureblocs.place.lineup",
+  "defs": {
+    "main": {
+      "type": "record",
+      "description": "Cultural detail attached to an event that the shared calendar record does not carry: who is on, and what is performed or shown. A layer, not a replacement — it references an event by strongRef and never duplicates it. Supersedes com.cultureblocs.venue.lineup, renamed with venue.profile → place.profile so the namespace stays consistent; the shape is unchanged except that `venue` is now `place`. If these fields prove generally useful they belong upstream in the community calendar lexicon, not here.",
+      "key": "tid",
+      "record": {
+        "type": "object",
+        "required": [
+          "event",
+          "createdAt"
+        ],
+        "properties": {
+          "event": {
+            "type": "ref",
+            "ref": "com.cultureblocs.defs#strongRef",
+            "description": "The event this describes — normally a community.lexicon.calendar.event record. Pin the CID so the attachment is tamper-evident."
+          },
+          "billing": {
+            "type": "array",
+            "maxLength": 20,
+            "items": {
+              "type": "ref",
+              "ref": "com.cultureblocs.defs#creditRef"
+            },
+            "description": "Who is on: performers, artists, speakers, DJs. `did` links to a creative profile where one exists."
+          },
+          "works": {
+            "type": "array",
+            "maxLength": 20,
+            "items": {
+              "type": "ref",
+              "ref": "com.cultureblocs.defs#workRef"
+            },
+            "description": "Works performed or shown, where the programme is specific about them."
+          },
+          "place": {
+            "type": "ref",
+            "ref": "com.cultureblocs.defs#strongRef",
+            "description": "The place.profile record, when the event happens at a place that publishes one."
+          },
+          "note": {
+            "type": "string",
+            "maxGraphemes": 2000
+          },
+          "tags": {
+            "type": "array",
+            "maxLength": 8,
+            "items": {
+              "type": "string",
+              "maxGraphemes": 64
+            }
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "datetime"
+          }
+        }
+      }
+    }
+  }
+}

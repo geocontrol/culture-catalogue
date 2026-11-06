@@ -1,0 +1,108 @@
+{
+  "lexicon": 1,
+  "id": "com.cultureblocs.venue.listing",
+  "defs": {
+    "main": {
+      "type": "record",
+      "description": "DEPRECATED \u2014 do not write new records. Use community.lexicon.calendar.event instead: it is the shared event record of the open social web, so a venue's nights appear in every calendar app on the network rather than only in CultureBlocs. Cultural extras that the community event does not carry (who is on, works performed) live in com.cultureblocs.venue.lineup, which references the event. This schema remains published so existing records stay resolvable.",
+      "key": "tid",
+      "record": {
+        "type": "object",
+        "required": [
+          "title",
+          "start",
+          "createdAt"
+        ],
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxGraphemes": 300
+          },
+          "description": {
+            "type": "string",
+            "maxGraphemes": 2000
+          },
+          "start": {
+            "type": "string",
+            "format": "datetime"
+          },
+          "end": {
+            "type": "string",
+            "format": "datetime"
+          },
+          "venue": {
+            "type": "union",
+            "refs": [
+              "com.cultureblocs.defs#placeRef",
+              "com.cultureblocs.defs#strongRef"
+            ],
+            "description": "The venue profile record, or a named place when the venue has no CultureBlocs identity."
+          },
+          "billing": {
+            "type": "array",
+            "maxLength": 20,
+            "items": {
+              "type": "ref",
+              "ref": "com.cultureblocs.defs#creditRef"
+            },
+            "description": "Who is on: performers, artists, speakers, DJs. `did` links to a creative profile where one exists."
+          },
+          "works": {
+            "type": "array",
+            "maxLength": 20,
+            "items": {
+              "type": "ref",
+              "ref": "com.cultureblocs.defs#workRef"
+            },
+            "description": "Works shown or performed, where the listing is specific about them."
+          },
+          "event": {
+            "type": "ref",
+            "ref": "com.cultureblocs.defs#strongRef",
+            "description": "Interop hook: a general-purpose event record elsewhere that this listing corresponds to. Prefer pointing over duplicating."
+          },
+          "status": {
+            "type": "string",
+            "maxGraphemes": 32,
+            "knownValues": [
+              "scheduled",
+              "cancelled",
+              "postponed",
+              "soldout"
+            ]
+          },
+          "links": {
+            "type": "array",
+            "maxLength": 8,
+            "items": {
+              "type": "ref",
+              "ref": "com.cultureblocs.defs#linkRef"
+            },
+            "description": "Tickets, event page, the venue's own listing."
+          },
+          "externalIds": {
+            "type": "array",
+            "maxLength": 20,
+            "items": {
+              "type": "ref",
+              "ref": "com.cultureblocs.defs#externalId"
+            }
+          },
+          "tags": {
+            "type": "array",
+            "maxLength": 8,
+            "items": {
+              "type": "string",
+              "maxGraphemes": 64
+            }
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "datetime",
+            "description": "When this record was first stamped. The only immutable field: everything else may be revised by publishing a new commit."
+          }
+        }
+      }
+    }
+  }
+}
