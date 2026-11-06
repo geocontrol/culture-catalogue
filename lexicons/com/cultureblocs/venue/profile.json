@@ -1,0 +1,87 @@
+{
+  "lexicon": 1,
+  "id": "com.cultureblocs.venue.profile",
+  "defs": {
+    "main": {
+      "type": "record",
+      "description": "DEPRECATED — do not write new records. Use com.cultureblocs.place.profile with spaceTypes including 'venue': the same publishing-party record, widened to cover rehearsal rooms, studios, suppliers and shops. This schema remains published so existing records stay resolvable; readers map it to place.profile as { spaceTypes: ['venue'], location, capacity, accessibility, links, externalIds, tags }. Original description: a venue or organiser as a publishing party: the small amount a grassroots space needs to be findable and pointable-at. Publishing this does not make the venue an audience-data platform \u2014 audiences publish their own beads referencing the venue's listings, and the venue reads public references. Nothing about an attendee is ever collected here. Events at this venue are published as community.lexicon.calendar.event records; this profile carries what a venue needs that an event does not \u2014 capacity and access, which funders and licensing ask for.",
+      "key": "literal:self",
+      "record": {
+        "type": "object",
+        "required": [
+          "name",
+          "createdAt"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxGraphemes": 300
+          },
+          "description": {
+            "type": "string",
+            "maxGraphemes": 2000
+          },
+          "place": {
+            "type": "ref",
+            "ref": "com.cultureblocs.defs#placeRef",
+            "description": "Where it is. Venues are public places: geo precision here is normally 'exact'."
+          },
+          "address": {
+            "type": "string",
+            "maxGraphemes": 500
+          },
+          "capacity": {
+            "type": "integer",
+            "description": "Approximate standing/seated capacity. Small venues are repeatedly asked for this by funders and licensing."
+          },
+          "accessibility": {
+            "type": "string",
+            "maxGraphemes": 1000,
+            "description": "Freeform access notes: step-free entry, accessible toilet, hearing loop, quiet room."
+          },
+          "links": {
+            "type": "array",
+            "maxLength": 8,
+            "items": {
+              "type": "ref",
+              "ref": "com.cultureblocs.defs#linkRef"
+            },
+            "description": "Website, socials, ticketing, listings page."
+          },
+          "externalIds": {
+            "type": "array",
+            "maxLength": 20,
+            "items": {
+              "type": "ref",
+              "ref": "com.cultureblocs.defs#externalId"
+            },
+            "description": "Wikidata, MusicBrainz place, charity or company number."
+          },
+          "tags": {
+            "type": "array",
+            "maxLength": 8,
+            "items": {
+              "type": "string",
+              "maxGraphemes": 64
+            }
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "datetime",
+            "description": "When this record was first stamped. The only immutable field: everything else may be revised by publishing a new commit."
+          },
+          "location": {
+            "type": "union",
+            "refs": [
+              "community.lexicon.location.address",
+              "community.lexicon.location.geo",
+              "community.lexicon.location.fsq",
+              "community.lexicon.location.hthree"
+            ],
+            "description": "Where the venue is, using the shared location objects of the open social web so other apps understand it. Preferred over the legacy `place`/`address` fields."
+          }
+        }
+      }
+    }
+  }
+}

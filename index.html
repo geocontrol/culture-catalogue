@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Culture Catalogue</title>
+<meta name="description" content="Find creative people and places: venues, rehearsal rooms, recording studios, artist studios, suppliers, and the people who make culture happen.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<header class="masthead">
+  <a class="drawer-label" href="/" aria-label="Culture Catalogue home">
+    <span class="drawer-label__plate">Culture Catalogue</span>
+  </a>
+  <a class="btn btn--quiet" href="/join/">Add yourself</a>
+</header>
+
+<main id="main">
+  <section class="finder" aria-labelledby="finder-title">
+    <h1 id="finder-title">Creative people and places</h1>
+    <p class="finder__intro">Venues, rehearsal rooms, studios and suppliers, and the people who use them. Everyone here published their own entry.</p>
+
+    <form class="search" role="search" id="search-form">
+      <label class="visually-hidden" for="q">Search</label>
+      <input id="q" name="q" type="search" autocomplete="off"
+        placeholder="Try ‘recording studio’, ‘ceramics’ or a name">
+    </form>
+
+    <div class="filters" role="group" aria-label="Filters">
+      <fieldset class="seg" id="who">
+        <legend class="visually-hidden">Show</legend>
+        <label><input type="radio" name="who" value="all" checked><span>Everyone</span></label>
+        <label><input type="radio" name="who" value="person"><span>People</span></label>
+        <label><input type="radio" name="who" value="place"><span>Places</span></label>
+      </fieldset>
+
+      <div class="field area-field">
+        <label for="area-input">Area</label>
+        <div class="combo" id="area-combo">
+          <input id="area-input" type="text" role="combobox" aria-autocomplete="list"
+            aria-expanded="false" aria-controls="area-list" autocomplete="off" placeholder="Anywhere in the UK">
+          <button type="button" class="combo__clear" id="area-clear" aria-label="Clear area" hidden>×</button>
+          <ul class="combo__list" id="area-list" role="listbox" hidden></ul>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="type">Kind of place</label>
+        <select id="type"><option value="">Any</option></select>
+      </div>
+
+      <div class="field">
+        <label for="discipline">Discipline</label>
+        <select id="discipline"><option value="">Any</option></select>
+      </div>
+
+      <label class="check"><input type="checkbox" id="offers"> Has an offer open</label>
+    </div>
+  </section>
+
+  <section class="results" aria-labelledby="result-summary">
+    <div class="results__bar">
+      <p id="result-summary" class="results__summary" aria-live="polite">Loading the catalogue…</p>
+      <fieldset class="seg seg--views" id="view">
+        <legend class="visually-hidden">View as</legend>
+        <label><input type="radio" name="view" value="list"><span>List</span></label>
+        <label><input type="radio" name="view" value="cards" checked><span>Cards</span></label>
+        <label><input type="radio" name="view" value="map"><span>Map</span></label>
+      </fieldset>
+    </div>
+
+    <div id="view-list" class="register" hidden></div>
+    <div id="view-cards" class="drawer" hidden></div>
+    <div id="view-map" class="mapwrap" hidden>
+      <div id="map" class="map" role="region" aria-label="Map of places and areas"></div>
+      <p class="map__note">Places are pinned at their own address. People are counted into the area they are based in, never pinned.</p>
+    </div>
+    <div id="empty" class="empty" hidden></div>
+  </section>
+</main>
+
+<dialog id="detail" class="detail" aria-labelledby="detail-name">
+  <div id="detail-body"></div>
+</dialog>
+
+<footer class="colophon">
+  <p>Every entry is a <a href="https://www.cultureblocs.com">CultureBlocs</a> record published by that person or place in their own account. Culture Catalogue reads them; it doesn’t hold them. <a href="/join/">Add or edit yours.</a></p>
+  <p class="colophon__small">Areas: Wikidata (CC0) and Office for National Statistics boundaries, licensed under the Open Government Licence v3.0; contains OS data © Crown copyright and database right. Map: <a href="https://openfreemap.org">OpenFreeMap</a>, © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors.</p>
+</footer>
+
+<script type="module" src="/app.js"></script>
+</body>
+</html>

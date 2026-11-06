@@ -1,0 +1,146 @@
+{
+  "lexicon": 1,
+  "id": "com.cultureblocs.place.profile",
+  "defs": {
+    "main": {
+      "type": "record",
+      "description": "A cultural place as a publishing party: a venue, gallery, rehearsal room, recording studio, artist studio, makerspace, supplier or shop — anywhere the public can visit or book. Supersedes com.cultureblocs.venue.profile, which covered only venues; a venue is now a place whose spaceTypes include 'venue'. This record is for spaces open to the public or bookable by them. A person working from home publishes a creative.profile (an area, never an address) and offers through com.cultureblocs.offer; they do not publish a place. Nothing about a visitor is ever collected here.",
+      "key": "any",
+      "record": {
+        "type": "object",
+        "required": [
+          "name",
+          "spaceTypes",
+          "createdAt"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxGraphemes": 300
+          },
+          "description": {
+            "type": "string",
+            "maxGraphemes": 2000
+          },
+          "spaceTypes": {
+            "type": "array",
+            "minLength": 1,
+            "maxLength": 8,
+            "items": {
+              "type": "string",
+              "maxGraphemes": 64,
+              "knownValues": [
+                "venue",
+                "gallery",
+                "museum",
+                "cinema",
+                "theatre",
+                "rehearsal_room",
+                "recording_studio",
+                "artist_studio",
+                "makerspace",
+                "workshop",
+                "coworking",
+                "supplier",
+                "shop",
+                "library",
+                "community_space"
+              ]
+            },
+            "description": "What kind of place this is. A list, because real places mix uses: a railway-arch building can be a gallery, artist studios and a shop at once. Advisory vocabulary: readers show unknown values as tags rather than dropping them."
+          },
+          "publicAccess": {
+            "type": "string",
+            "maxGraphemes": 32,
+            "knownValues": [
+              "walk_in",
+              "by_appointment",
+              "bookable",
+              "online_only"
+            ],
+            "description": "How the public reaches this place. 'online_only' places (a supplier with no shop) publish serviceArea and no location."
+          },
+          "location": {
+            "type": "union",
+            "refs": [
+              "community.lexicon.location.address",
+              "community.lexicon.location.geo",
+              "community.lexicon.location.fsq",
+              "community.lexicon.location.hthree"
+            ],
+            "description": "Where the place is, using the shared location objects of the open social web. Places are public, so precision is normally exact. Omit for online_only places."
+          },
+          "area": {
+            "type": "ref",
+            "ref": "com.cultureblocs.defs#areaRef",
+            "description": "The named area the place sits in (town, borough), normally derived from the postcode by the publishing app. Lets readers filter by area without geocoding."
+          },
+          "serviceArea": {
+            "type": "array",
+            "maxLength": 8,
+            "items": {
+              "type": "ref",
+              "ref": "com.cultureblocs.defs#areaRef"
+            },
+            "description": "Areas the place serves beyond its own doors: delivery, mobile services, 'UK-wide'. The main location field for online_only places."
+          },
+          "capacity": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Approximate standing/seated capacity, where it applies. Small venues are repeatedly asked for this by funders and licensing."
+          },
+          "accessibility": {
+            "type": "string",
+            "maxGraphemes": 1000,
+            "description": "Freeform access notes: step-free entry, accessible toilet, hearing loop, quiet room."
+          },
+          "hours": {
+            "type": "string",
+            "maxGraphemes": 500,
+            "description": "Freeform opening or booking hours, e.g. 'Tue–Sat 10–6', '24-hour self-service'."
+          },
+          "images": {
+            "type": "array",
+            "maxLength": 4,
+            "items": {
+              "type": "ref",
+              "ref": "com.cultureblocs.defs#imageRef"
+            },
+            "description": "Photos of the place. The first is used on directory cards."
+          },
+          "links": {
+            "type": "array",
+            "maxLength": 8,
+            "items": {
+              "type": "ref",
+              "ref": "com.cultureblocs.defs#linkRef"
+            },
+            "description": "Website, booking page, socials, ticketing."
+          },
+          "externalIds": {
+            "type": "array",
+            "maxLength": 20,
+            "items": {
+              "type": "ref",
+              "ref": "com.cultureblocs.defs#externalId"
+            },
+            "description": "Wikidata, MusicBrainz place, charity or company number."
+          },
+          "tags": {
+            "type": "array",
+            "maxLength": 8,
+            "items": {
+              "type": "string",
+              "maxGraphemes": 64
+            }
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "datetime",
+            "description": "When this record was first stamped. The only immutable field: everything else may be revised by publishing a new commit."
+          }
+        }
+      }
+    }
+  }
+}
